@@ -1,5 +1,5 @@
 # Biostats
-This is a reposotory by Lumi to store his Biostatistics cource notes, codes and most importantly, homeworks. Please read this README file carefully if you are thinking about using it to aid your study.
+This is a repository by Lumi to store his Biostatistics cource notes, codes and most importantly, homeworks. Please read this README file carefully if you are thinking about using it to aid your study.
 
 ## About the Course BIO210
 <img src="/extra/homepage.png">
