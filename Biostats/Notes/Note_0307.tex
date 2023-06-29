@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage{titling}
+\usepackage{indentfirst}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Proofs About Expected Value and Variance}
+\author{$\mathbb{L}$umi}
+\setlength{\droptitle}{-8em}
+\date{\today}
+
+\begin{document}
+	
+\maketitle
+
+We would like to prove three equations mentioned on Biostatistics course on March the 7th.
+
+\section{Pre-requirements}
+Expected values are defined as follows.
+\begin{equation}
+	E(X) = \sum_x x P_X(x)
+\end{equation}
+
+Variances are defined as follows.
+\begin{equation}
+\begin{aligned}
+	\mathrm{Var}(X) &= E([X - E(X)]^2) \\
+\end{aligned}
+\end{equation}
+
+\section{Random Variables Built on Random Variables}
+
+Suppose we have random variables $X$ and $Y$. $Y$ and $X$ are related through the funciton $y = f(x)$. We would like to prove that
+
+\begin{equation}
+	E(Y) = \sum_x g(x)P_X(x)
+\end{equation}
+
+We start from the basic definition of expected values.
+
+\begin{equation}
+\begin{aligned}
+	E(Y) &= \sum_y y P_Y(y) \\
+	&= \sum_x g(x) P_{g(X)}(g(x))
+\end{aligned}
+\end{equation}
+
+Thus, what we need to prove is $P_{g(X)}(g(x)) = P_X(x)$.
+
+\begin{equation}
+\begin{aligned}
+	P_{g(x)} (g(x)) &= \sum P(g(X) = g(x)) \\
+	&= \sum P(X = g^{-1}[g(x)]) \\
+	&= \sum P(X=x) \\
+	&= P_X(x)
+\end{aligned}	
+\end{equation}
+
+\section{Nudging $X$ in a Linear Way}
+The second equation to prove is when we nudge $X$ a bit and see what happens to the expected value of $X$.
+
+\begin{equation}
+	E(\alpha X+\beta) = \alpha E(X) + \beta
+\end{equation}
+
+This is quite easy to prove with the basic definition.
+
+\begin{equation}
+	\begin{aligned}
+		E(\alpha X + \beta) &= \sum_x (\alpha x + \beta)P(\alpha x + \beta) \\
+		&=\sum_x \alpha x P(\alpha x + \beta) + \sum_x \beta P(\alpha x + \beta) \\
+	\end{aligned}
+\end{equation} 
+
+We know that,
+\begin{equation}
+			\sum_{x} P(\alpha x + \beta) = 1, P(\alpha x + \beta) = P(x)
+\end{equation}
+
+So
+\begin{equation}
+\begin{aligned}
+		E(\alpha x + \beta) &= \alpha \sum_x x P(x) + \beta \\
+		&= \alpha E(X) + \beta
+\end{aligned}
+\end{equation}
+
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

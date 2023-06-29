@@ -1,0 +1,524 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{xeCJK}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\hypertarget{biostatistics-homework-5}{%
+\section{Biostatistics Homework 5}\label{biostatistics-homework-5}}
+
+By \(\mathbb{L}\)umi (张鹿鸣12112618)
+
+\vspace{5mm}
+
+\hypertarget{one-sided-confidence-interval-1}{%
+\subsection{1. One-sided confidence interval
+1}\label{one-sided-confidence-interval-1}}
+
+In this question, we are interested in one sided confidence intervals.
+Thus we want to find:
+
+\[
+\text P (\mu \leq b) = 0.95
+\]
+
+Since the normal distribution is symmetric, and our population luckily
+follows a normal distribution with a know standard deviation, the one
+sided confidence interval for the lower tail and the upper bond will be
+just symmetric around \(\bar X\). The margin of error can be calculated
+with a z score.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.644854
+\end{verbatim}
+
+We get from R that when \(z = 1.645\), \(\text P (Z < z) = 0.95\). We
+also know that:
+
+\[
+Z = \frac{\bar X - \mu}{\sigma / \sqrt{n}}
+\]
+
+Thus the one sided confidence interval of the lower tail will be
+\(\text{C.I.} = (- \infty, \bar X + 1.645 \frac{\sigma}{\sqrt{n}}]\).
+
+Similarly, the one sided confidence interval of the upper tail will be
+\(\text{C.I.} = [\bar X - 1.645 \frac{\sigma}{\sqrt{n}}, + \infty)\).
+
+\hypertarget{one-sided-confidence-interval-2}{%
+\subsection{2. One-sided confidence interval
+2}\label{one-sided-confidence-interval-2}}
+
+Different from question 1, although our population still follows a
+normal distribution, this time, we don't know anything about it's
+variance. Thus, we need to substitute the population variance with the
+sample variance. Our random variable
+\(\frac{\bar X - \mu}{S/ \sqrt{n}}\) follows a T-distribution. We want
+to find:
+
+\[
+\text{P}(\mu \leq b) = 0.95
+\]
+
+The T-distribution is also symmetric, so the upper tail and the lower
+tail is symmetric around \(\bar X\). The margin of error can be
+calculated from the t score.
+
+If we want to calculate the confidence interval for the lower tail, the
+t score is \(t_{0.05, v - 1}\). We also know that:
+
+\[
+t = \frac{\bar X - \mu}{s / \sqrt{n}}
+\]
+
+Thus the confidence interval for the lower tail will be
+\(\text{C.I.} = (- \infty, \bar X + t_{0.05,v-1} \frac{s}{\sqrt{n}}]\).
+
+Similarly, the confidence interval for the upper tail will be
+\(\text{C.I.} =[\bar X + t_{0.95,v-1} \frac{s}{\sqrt{n}}, + \infty)=[\bar X - t_{0.05,v-1} \frac{s}{\sqrt{n}}, + \infty)\).
+
+\hypertarget{section}{%
+\subsection{3.}\label{section}}
+
+T
+
+F
+
+\([0.7421, 0.8229]\) (See 3 supplement)
+
+F
+
+T
+
+\hypertarget{supplement}{%
+\paragraph{3 supplement}\label{supplement}}
+
+We know from the problem that this is a test for proportion. Thus the
+confidence interval is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{313}\SpecialCharTok{/}\DecValTok{400}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7825
+\end{verbatim}
+
+\[
+\text{C.I.} = [0.7825 - 1.96 \sqrt{\frac{(1-0.7825) \times 0.7825}{400}},0.7825 + 1.96 \sqrt{\frac{(1-0.7825) \times 0.7825}{400}}]
+\]
+
+Which is \([0.7421, 0.8229]\).
+
+\hypertarget{null-and-alternative-hypothesis}{%
+\subsection{4 Null and Alternative
+Hypothesis}\label{null-and-alternative-hypothesis}}
+
+\hypertarget{section-1}{%
+\subsubsection{4.1)}\label{section-1}}
+
+\(H_0\) : The rate of female student hadn't increased. \(\pi \leq 7 \%\)
+
+\(H_1\) : The rate of female student increased. \(\pi > 7 \%\)
+
+\hypertarget{section-2}{%
+\subsubsection{4.2)}\label{section-2}}
+
+\(H_0\) : The new technique is not significantly better or worse.
+\(\pi = 75 \%\)
+
+\(H_1\) : The new technique is significantly better or worse.
+\(\pi \not = 75 \%\)
+
+\hypertarget{section-3}{%
+\subsubsection{4.3)}\label{section-3}}
+
+\(H_0\) : The machine is not dispensing too much in medium drinks.
+\(\mu \leq 530 \text{ml}\)
+
+\(H_1\) : The machine is dispensing too much in medium drinks.
+\(\mu > 530 \text{ml}\)
+
+\hypertarget{section-4}{%
+\subsubsection{4.4)}\label{section-4}}
+
+\(H_0\) : The proportion of people who received the flu shot had not
+changed. \(\pi = 48 \%\)
+
+\(H_1\) : The proportion of people who received the flu shot had
+changed. \(\pi \not = 48 \%\)
+
+\hypertarget{the-p-value}{%
+\subsection{\texorpdfstring{5 The
+\(p\)-value}{5 The p-value}}\label{the-p-value}}
+
+F
+
+F
+
+T
+
+F
+
+F
+
+\hypertarget{blue-mms-candies}{%
+\subsection{6 Blue M\&M's candies}\label{blue-mms-candies}}
+
+\hypertarget{section-5}{%
+\subsubsection{6.1)}\label{section-5}}
+
+D
+
+\hypertarget{section-6}{%
+\subsubsection{6.2)}\label{section-6}}
+
+\(H_0\): The plain M\&M's candies do contain 24\% blue ones.
+\(\pi = 24 \%\)
+
+\(H_1\): The plain M\&M's candies does not contain 24\% blue ones.
+\(\pi \not= 24 \%\)
+
+\hypertarget{section-7}{%
+\subsubsection{6.3)}\label{section-7}}
+
+The test statistic, which should be a z-statistic, because we are
+testing on a proportion, and \(np > 10, nq > 10\).
+
+\[
+z = \frac{p - \pi}{\sqrt{\frac{( 1 - \pi) \pi}{n}}} = \frac{18.4\% - 24\%}{\sqrt{\frac{(1-24\% ) \times 24\%}{500}}} \approx -2.932
+\]
+
+\hypertarget{section-8}{%
+\subsubsection{6.4)}\label{section-8}}
+
+The population follows a binomial distribution. Our sample satisfies
+\(np > 10\) and \(n(1-p) > 10\). Thus the test statistic approximately
+follows a standard normal distribution.
+
+\hypertarget{section-9}{%
+\subsubsection{6.5)}\label{section-9}}
+
+There might be multiple reasons. I list some of my explanations below:
+
+\begin{itemize}
+\item
+  Li Lei is very lucky and got weird M\&M's candies.
+\item
+  Li Lei bought the 500 candies from the same production batch, and they
+  are not of good quality.
+\item
+  The M\&M might change their policy on the proportion of blue candies.
+\item
+  Li Lei might have counting mistakes (e.g.~He is colour blind)
+\end{itemize}
+
+\hypertarget{section-10}{%
+\subsubsection{6.6)}\label{section-10}}
+
+The margin of error is:
+
+\[
+z_{0.025} \sqrt{\frac{(1-p)p}{n}} = 1.96 \times \sqrt{\frac{(1-0.184) \times 0.184}{500}} = 0.03
+\]
+
+So the two sided 95\% confidence interval is:
+
+\[
+\text{C.I.} = [15.4\%, 21.4 \%]
+\]
+
+\hypertarget{section-11}{%
+\subsubsection{6.7}\label{section-11}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pnorm}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{2.932}\NormalTok{) }\SpecialCharTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.003367867
+\end{verbatim}
+
+We can see that the \(p\)-value is 0.003 \textless{} 0.01. Thus, Li Lei
+should reject the null hypothesis.
+
+\hypertarget{renal-disease}{%
+\subsection{7 Renal Disease}\label{renal-disease}}
+
+\hypertarget{section-12}{%
+\subsubsection{7.1)}\label{section-12}}
+
+C
+
+\hypertarget{section-13}{%
+\subsubsection{7.2)}\label{section-13}}
+
+\(H_0\): The mean serum-creatinine level in the people who have taken
+the antibiotic is not significantly different from the normal people.
+\(\mu = 1.0 \text{mg/dL}\)
+
+\(H_1\): The mean serum-creatinine level in the people who have taken
+the antibiotic is significantly different from the normal people.
+\(\mu \not= 1.0 \text{mg/dL}\)
+
+\hypertarget{section-14}{%
+\subsubsection{7.3)}\label{section-14}}
+
+Since we are comparing between the sample and the whole normal
+population, and the antibiotic does not change the dispersion of the
+serum-creatinine level, we can assume that a z statistic should be
+calculated.
+
+\[
+z = \frac{\bar x - \mu}{\sigma/ \sqrt{n}} = \frac{1.2 - 1.0}{0.4 / \sqrt{12}} = \sqrt{3} = 1.732
+\]
+
+\hypertarget{section-15}{%
+\subsubsection{7.4)}\label{section-15}}
+
+If \(H_0\) was true, as mentioned above, the test statistics will follow
+a standard normal distribution.
+
+\hypertarget{section-16}{%
+\subsubsection{7.5)}\label{section-16}}
+
+The margin of error is:
+
+\[
+\varepsilon = z_{0.025} \times \frac{\sigma}{\sqrt{n}} = 1.96 \times \frac{0.4}{\sqrt{12}} \approx 0.2263
+\]
+
+So the confidence interval is \(\text{C.I.} = [0.9736, 1.4263]\).
+
+\hypertarget{section-17}{%
+\subsubsection{7.6)}\label{section-17}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pnorm}\NormalTok{(}\FloatTok{1.732}\NormalTok{, }\AttributeTok{lower.tail =}\NormalTok{ F) }\SpecialCharTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.08327356
+\end{verbatim}
+
+The \$p\$-value is 0.08 which is not smaller than 0.05, I think I will
+not reject \(H_0\).
+
+\hypertarget{serum-cholestrol-level}{%
+\subsection{8 Serum Cholestrol Level}\label{serum-cholestrol-level}}
+
+\hypertarget{section-18}{%
+\subsubsection{8.1)}\label{section-18}}
+
+From lecture 26, we now that the standard deviation in the sample is
+46mg/100ml. We also know that we want a significance level of
+\(\alpha = 0.05\). We can calculate the rejection threshold:
+
+\[
+x_{\text{reject}} = \bar x + z_{0.05} \times \frac{\sigma}{\sqrt{n}} = 180 + 1.645 \times \frac{46}{\sqrt{50}} \approx 190.7
+\]
+
+So the rejection threshold is 190.7mg/100ml.
+
+The power, \(1-\beta\), can be calculated from \(\beta\), which is the
+possibility of not rejecting the null hypothesis when the null
+hypothesis is not true. First we calculate the test statistics for the
+population:
+
+\[
+z = \frac{x_{\text{reject}} - \mu}{\sigma / \sqrt{n}} = \frac{190.7 - 200}{46/\sqrt{50}} \approx -1.43
+\]
+
+Then we can calculate the probability of
+\(P( \text{not reject } H_0 | H_0 \text{ is false})\) which is
+\(\beta\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pnorm}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{1.43}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07635851
+\end{verbatim}
+
+So \(\beta = 0.076\). The power is \(1-\beta = 0.924\).
+
+\hypertarget{section-19}{%
+\subsubsection{8.2)}\label{section-19}}
+
+Because I don't want a step by step calculation, so I'm just going to
+derive the general formula.
+
+The test statistic we calculate are \(z_\alpha\) and
+\(z_{1-\beta} = -z_\beta\). From the previous example, we can see that:
+
+\[
+-z_\beta = \frac{\bar x + z_\alpha \times \frac{\sigma}{\sqrt{n}} - \mu}{\sigma / \sqrt{n}}
+\]
+
+With a bit of fumbling around, we can get the equation:
+
+\[
+n = (\frac{(z_\alpha + z_\beta) \sigma}{\mu - \bar x})^2
+\]
+
+So in our case, \(\lceil n \rceil = 101\), so the required sample size
+is 101.
+
+\hypertarget{section-20}{%
+\subsubsection{8.3)}\label{section-20}}
+
+B
+
+\hypertarget{type-i-ii-errors}{%
+\subsection{9 Type I \& II errors}\label{type-i-ii-errors}}
+
+\hypertarget{section-21}{%
+\subsubsection{9.1)}\label{section-21}}
+
+B
+
+\hypertarget{section-22}{%
+\subsubsection{9.2)}\label{section-22}}
+
+C
+
+\hypertarget{section-23}{%
+\subsubsection{9.3)}\label{section-23}}
+
+B
+
+\hypertarget{section-24}{%
+\subsubsection{9.4)}\label{section-24}}
+
+D (But I think C is also ok, because we don't want to waste a lot of
+money to clean the pool.)
+
+\end{document}

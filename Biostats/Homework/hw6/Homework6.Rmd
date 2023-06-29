@@ -1,0 +1,295 @@
+---
+output:
+  pdf_document: 
+    keep_tex: yes
+    latex_engine: xelatex
+  word_document: default
+  
+header-includes:
+   - \usepackage{xeCJK}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd('/Users/lumizhang/Documents/sustech/biology/classes/Biostatistics/Homework/hw6')
+```
+
+# Biostatistics Homework 6
+
+By $\mathbb{L}$umi (张鹿鸣12112618)
+
+\vspace{5mm}
+
+## 1. Gas Mileage
+
+1.1) C
+
+1.2) B
+
+## 2. Old and New Machines
+
+2.1)
+
+$H_0$ : The new machine is not faster than the old machine on average ($\mu_\text{new} \geq \mu_\text{old}$).
+
+$H_1$ : The new machine is faster than the old machine on average ($\mu_\text{new} < \mu_\text{old}$).
+
+2.2)
+
+It means that there is a 0.05 chance to reject the null hypothesis when the null hypothesis is true.
+
+2.3)
+
+The q2_table.txt:
+
+Oldmachine 42.7 43.8 42.5 43.1 44.0 43.6 43.3 43.5 41.7 44.1
+
+Newmachine 42.1 41.3 42.4 43.2 41.8 41.0 41.8 42.8 42.3 42.7
+
+```{r}
+machines <- as.data.frame(t(read.table('q2_table.txt', sep = '\t', row.names = 1)))
+mean_old <- mean(machines$Oldmachine)
+mean_new <- mean(machines$Newmachine)
+var_old <- var(machines$Oldmachine)
+var_new <- var(machines$Newmachine)
+statistics <- data.frame(
+  mean = c(mean_old, mean_new),
+  variance = c(var_old, var_new)
+)
+rownames(statistics) <- c('Old', 'New')
+statistics
+```
+
+So the statistics are:
+
+$$
+\bar{x}_\text{new} = 42.14 , s_\text{new}^2 \approx 0.5623
+$$
+
+$$
+\bar{x}_\text{old} = 43.23 , s_\text{old}^2 \approx 0.4671 
+$$
+
+2.4)
+
+We should use an independent two sample T-test. Since we have independent samples that are not paired.
+
+We should check our samples are randomly and independently selected.
+
+It is also important that the samples follow T-distributions. Or that the population follows a normal distribution.
+
+```{r, fig.width=5, fig.height=5}
+boxplot(machines)
+```
+
+From the plot, I think we can say that our sample roughly follows a T-distribution, so using a T-test is reasonable.
+
+We should also make sure that the variance between the two samples don't vary too much. In our samples, it doesn't.
+
+2.5)
+
+So the common variance is :
+
+$$
+s^2 = \frac{(n_\text{new} - 1) s_\text{new}^2 + (n_\text{old} - 1) s_\text{old}^2}{n_\text{new} + n_\text{old} - 2} = \frac{9 \times 0.5623 + 9 \times 0.4671}{18} = 0.5147
+$$
+
+The T-score is:
+
+$$
+t = \frac{\bar{x}_\text{new} - \bar{x}_\text{old}}{\sqrt{s^2(\frac{1}{n_\text{new}} + \frac{1}{n_\text{old}})}} = \frac{42.14 - 43.23}{\sqrt{0.5147 \times(\frac{1}{10} + \frac{1}{10})}} \approx -3.397
+$$
+
+The p-value is:
+
+```{r}
+pt(-3.397, 18)
+```
+
+```{r}
+t.test(machines$Newmachine, machines$Oldmachine, alternative = "less")
+```
+
+From the `t.test()` function in R, we can see that our answers are quite right.
+
+2.6)
+
+D
+
+(I don't know if B is correct or not, we reject the null hypothesis if the significance level is 0.05, but it doesn't mean the null hypothesis is wrong.)
+
+## 3. ANOVA
+
+C
+
+## 4. Another ANOVA
+
+B
+
+(Since the variance of the data is mainly contributed by the variance within the groups (MSW).)
+
+## 5. Another ANOVA
+
+C
+
+## 6. ANOVA and T-test
+
+B
+
+(Using multiple T-tests increase the chance of making a Type I error in your study, I don't think it is very good to say that it increases the probability of making a type I error)
+
+## 7. **post-hoc** ANOVA
+
+A (or between multiple groups)
+
+## 8. Fisheries
+
+8.1)
+
+$H_0$: The mean weights of fish caught from the three lakes are not different.
+
+$H_1$: The mean weights of fish caught from the three lakes are different.
+
+8.2)
+
+```{r}
+anova <- data.frame(d.f. = c(2,9,11),
+                    SS = c(17.04, 14.19, 31.23),
+                    MS = c(17.04/2, 14.19/9, NA))
+row.names(anova) <- c("Between", "Within", "Total")
+anova
+```
+
+So the F-score is:
+
+$$
+F = \frac{\text{MSB}}{\text{MSW}} = 8.52 \div 1.5767 = 5.404
+$$
+
+So the p-value is:
+
+```{r}
+pf(5.404, 2, 9, lower.tail = F)
+```
+
+8.3)
+
+The p-value is 0.0287, so we should reject the null hypothesis.
+
+## 9. Tar in Cigarettes
+
+```{r}
+tar <- data.frame(
+  BrandA = c(10.21,10.25,10.24,9.80,9.77,9.73),
+  BrandB = c(11.32,11.20,11.40,10.50,10.68,10.90),
+  BrandC = c(11.60,11.90,11.80,12.30,12.20,12.20)
+)
+```
+
+9.1）
+
+$H_0$: The tar contents for the three different brands of cigarettes are not different.
+
+$H_1$: The tar contents for the three different brands of cigarettes are different.
+
+9.2)
+
+```{r}
+# We need to melt the data to perform anova test
+library(reshape2)
+molten_tar <- melt(tar)
+res <- aov(value~variable, data = molten_tar)
+summary(res)
+```
+
+We can see from the result summary that we have a F-value of 65.46 and a p-value of $3.98\times 10^{-8}$. Thus we should reject the null hypothesis.
+
+9.3)
+
+```{r}
+mean_a <- mean(tar$BrandA)
+mean_b <- mean(tar$BrandB)
+mean_c <- mean(tar$BrandC)
+s2_a <- var(tar$BrandA)
+s2_b <- var(tar$BrandB)
+s2_c <- var(tar$BrandC)
+s2_ab <- (5 * s2_a + 5 * s2_b)/10
+s2_ac <- (5 * s2_a + 5 * s2_c)/10
+s2_bc <- (5 * s2_b + 5 * s2_c)/10
+t_ab <- (mean_a - mean_b)/sqrt(s2_ab * (1/6 + 1/6))
+t_ac <- (mean_a - mean_c)/sqrt(s2_ac * (1/6 + 1/6))
+t_bc <- (mean_b - mean_c)/sqrt(s2_bc * (1/6 + 1/6))
+c(t_ab, t_ac, t_bc)
+```
+
+I just realized after I did this that the Fisher's Least Significant Difference requires to use MSW as the common variant. No matter, we show here that the resulting t-score using MSW and standard deviation between two samples are different.
+
+```{r}
+t_ab_msw <- (mean_a - mean_b)/sqrt(0.092 * (1/6 + 1/6))
+t_ac_msw <- (mean_a - mean_c)/sqrt(0.092 * (1/6 + 1/6))
+t_bc_msw <- (mean_b - mean_c)/sqrt(0.092 * (1/6 + 1/6))
+c(t_ab_msw, t_ac_msw, t_bc_msw)
+```
+
+```{r}
+table <- data.frame(
+  Comparison = c("A vs. B", "A vs. C", "B vs. C"),
+  t_score = c(t_ab, t_ac, t_bc),
+  p_value = c(pt(t_ab, 15) * 2, pt(t_ac, 15) * 2, pt(t_bc, 15) * 2),
+  t_score_msw = c(t_ab_msw, t_ac_msw, t_bc_msw),
+  p_value_msw = c(pt(t_ab_msw, 15) * 2, pt(t_ac_msw, 15) * 2, pt(t_bc_msw, 15) * 2),
+  p_adj = c(pt(t_ab_msw, 15) * 2, pt(t_ac_msw, 15) * 2, pt(t_bc_msw, 15) * 2) * choose(3, 2)
+)
+table
+```
+
+Thus the table should be:
+
+```{r}
+table[, c(1,4,5,6)]
+```
+
+```{r}
+# Trying to write a all-in-one function to calculate the pairwise t-tests
+get_msw <- function(data){
+  msw <- 0
+  for(i in 1 : dim(data)[2]){
+    msw <- msw + (length(data[,i]) - 1) * var(data[,i])
+  }
+  return(msw / (dim(data)[1] * dim(data)[2] - dim(data)[2]))
+}
+
+pairwise_t <- function(data){
+  msw <- get_msw(data)
+  row_names <- c()
+  t_score <- c()
+  p_value <- c()
+  
+  for(i in 1 : (dim(data)[2] - 1)){
+    for(j in (i + 1) : dim(data)[2]){
+      a <- data[,i]
+      b <- data[,j]
+      
+      # Add two column names to the row name
+      row_names <- append(row_names,paste0(colnames(data)[i], " vs. ", colnames(data)[j]))
+      
+      # Calculate the t_score
+      t <- (mean(a) - mean(b)) / sqrt(msw * (1 / length(a) + 1 / length(b)))
+      t_score <- append(t_score, t)
+      
+      # Calculate the p_value
+      p_value <- append(p_value, pt(t, dim(data)[1] * dim(data)[2] - dim(data)[2]) * 2)
+    }
+  }
+  table <- data.frame(
+    Comparison = row_names,
+    t = t_score,
+    p = p_value,
+    p.adj = p_value * choose(dim(data)[2], 2)
+  )
+  return(table)
+}
+pairwise_t(tar)
+```
+
+Which give identical results, Hooray!
