@@ -30,13 +30,12 @@ def ctf_transform(image, z = 1):
     f_transform_shifted = np.fft.fftshift(f_transform)
 
     # Generate the CTF
-    z_init = z
     rows, cols = image.shape
     x = np.linspace(-2, 2, cols)
     y = np.linspace(-2, 2, rows)
     X, Y = np.meshgrid(x, y)
     r = np.sqrt(X**2 + Y**2)
-    ctf = ctf_function(z_init, r)
+    ctf = ctf_function(z, r)
     filtered_transform = f_transform_shifted * ctf  # Apply CTF
 
     # Inverse Fourier Transform
